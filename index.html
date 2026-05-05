@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cromo — O App do seu Álbum da Copa 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:          #F5F0E8;
+      --card:        #FFFFFF;
+      --dourado:     #C9A84C;
+      --dourado-dark:#B8892A;
+      --verde:       #2D6A4F;
+      --vermelho:    #C1440E;
+      --texto:       #3A2F20;
+      --texto-mid:   #5C5243;
+      --texto-light: #8A8070;
+      --borda:       #DDD4C0;
+      --font-display:'Bebas Neue', sans-serif;
+      --font-body:   'Plus Jakarta Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--texto);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER FIXO ─── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--texto);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 52px;
+    }
+
+    .header-logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--dourado);
+    }
+
+    .header-cta {
+      background: var(--dourado);
+      color: var(--texto);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .header-cta:hover { background: var(--dourado-dark); }
+
+    /* ─── WRAPPER ─── */
+    .wrapper {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 48px 0 40px; }
+    section + section { border-top: 1px solid var(--borda); }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding-top: 80px;
+      padding-bottom: 48px;
+      text-align: center;
+    }
+
+    /* Badge de app — primeira coisa que o usuário vê */
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--texto);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .app-badge-dot {
+      width: 8px; height: 8px;
+      background: #4ADE80;
+      border-radius: 50%;
+    }
+
+    .pre-headline {
+      display: inline-block;
+      background: var(--verde);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .headline {
+      font-family: var(--font-display);
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: 1px;
+      color: var(--texto);
+      margin-bottom: 16px;
+    }
+
+    .headline span { color: var(--dourado); }
+
+    .subheadline {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--texto-mid);
+      max-width: 360px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--dourado);
+      color: var(--texto);
+      font-weight: 700;
+      font-size: 17px;
+      padding: 18px 36px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+
+    .hero-cta:hover {
+      background: var(--dourado-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-sub {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--texto-light);
+    }
+
+    /* ─── MOCKUP DE FIGURINHAS ─── */
+    .mockup-wrapper {
+      margin: 32px auto 0;
+      background: var(--card);
+      border: 1.5px solid var(--borda);
+      border-radius: 20px;
+      padding: 20px 16px;
+      max-width: 340px;
+    }
+
+    .mockup-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: var(--texto-mid);
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .mockup-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: default;
+    }
+
+    .tab.active  { background: var(--texto); color: #fff; }
+    .tab.inactive{ background: #EEEAD9; color: var(--texto-mid); }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+    }
+
+    .fig {
+      aspect-ratio: 1;
+      border-radius: 5px;
+      cursor: default;
+    }
+
+    .fig.ok       { background: var(--verde); }
+    .fig.falta    { background: #E8E0D0; border: 1.5px solid var(--borda); }
+    .fig.repetida { background: var(--vermelho); }
+
+    .mockup-legenda {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--texto-mid);
+    }
+
+    .leg-dot {
+      width: 10px; height: 10px;
+      border-radius: 3px;
+    }
+
+    /* ─── SECTION LABELS / TITLES ─── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--texto-mid);
+      margin-bottom: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    em    { font-style: italic; color: var(--texto); }
+    strong{ color: var(--texto); font-weight: 700; }
+
+    /* ─── LISTA DE DOR ─── */
+    .dor-list { list-style: none; margin: 20px 0; }
+
+    .dor-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--borda);
+      color: var(--texto-mid);
+      font-size: 14px;
+    }
+
+    .dor-list li:last-child { border-bottom: none; }
+
+    .dor-icon {
+      width: 20px; height: 20px;
+      background: #FAE3DA;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .dor-icon::after {
+      content: '✕';
+      font-size: 11px;
+      color: var(--vermelho);
+      font-weight: 700;
+    }
+
+    /* ─── COMO FUNCIONA — 3 passos ─── */
+    .steps-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1.5px solid var(--borda);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .step-emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .step-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 2px;
+    }
+
+    .step-text span {
+      font-size: 13px;
+      color: var(--texto-light);
+    }
+
+    /* ─── FUNCIONALIDADES — bullets ─── */
+    .feat-bullets { list-style: none; margin-top: 20px; }
+
+    .feat-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--borda);
+      font-size: 14px;
+      color: var(--texto-mid);
+    }
+
+    .feat-bullets li:last-child { border-bottom: none; }
+
+    .feat-icon {
+      width: 22px; height: 22px;
+      background: #E8F4EE;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feat-icon::after {
+      content: '✓';
+      font-size: 12px;
+      color: var(--verde);
+      font-weight: 700;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list { margin-top: 20px; }
+
+    .faq-item {
+      background: var(--card);
+      border: 1.5px solid var(--borda);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--texto);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .faq-arrow {
+      width: 20px; height: 20px;
+      background: var(--bg);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      color: var(--dourado);
+      font-weight: 700;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-a { max-height: 200px; }
+
+    .faq-a-inner {
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--texto-mid);
+      line-height: 1.6;
+      border-top: 1px solid var(--borda);
+      padding-top: 12px;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final {
+      text-align: center;
+      padding: 56px 20px;
+    }
+
+    .cta-final .section-title {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .cta-final p {
+      font-size: 15px;
+      max-width: 340px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-final-btn {
+      display: block;
+      background: var(--dourado);
+      color: var(--texto);
+      font-weight: 700;
+      font-size: 18px;
+      padding: 20px 44px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.35);
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .cta-final-btn:hover {
+      background: var(--dourado-dark);
+      transform: translateY(-2px);
+    }
+
+    .cta-final-sub {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--texto-light);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--texto);
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--dourado);
+      margin-bottom: 8px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #5C5243;
+    }
+
+    /* ─── PULSE ─── */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 20px rgba(201,168,76,0.35); }
+      50%       { box-shadow: 0 4px 32px rgba(201,168,76,0.6); }
+    }
+
+    .hero-cta { animation: pulse-glow 2.8s ease-in-out infinite; }
+
+    .trial-hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--texto-light);
+      font-style: italic;
+    }
+
+    @media (min-width: 520px) {
+      .headline { font-size: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER FIXO ─── -->
+  <header class="header">
+    <div class="header-logo">CROMO</div>
+    <a href="https://copa-sticker-go.base44.app" class="header-cta">Começar grátis</a>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="wrapper">
+
+      <!-- Badge de app — primeira info visível -->
+      <div class="app-badge">
+        <div class="app-badge-dot"></div>
+        📱 App para celular — iOS e Android
+      </div>
+
+      <!-- Mockup CSS — ANTES da copy -->
+      <div class="mockup-wrapper">
+        <div class="mockup-tabs">
+          <span class="tab active">Meu Álbum</span>
+          <span class="tab inactive">Trocas</span>
+          <span class="tab inactive">Amigos</span>
+        </div>
+        <p class="mockup-title">BRASIL — 20 figurinhas</p>
+        <div class="mockup-grid" id="mockupGrid"></div>
+        <div class="mockup-legenda">
+          <div class="leg-item">
+            <div class="leg-dot" style="background:var(--verde)"></div>
+            <span>Colada</span>
+          </div>
+          <div class="leg-item">
+            <div class="leg-dot" style="background:#E8E0D0;border:1.5px solid var(--borda)"></div>
+            <span>Faltando</span>
+          </div>
+          <div class="leg-item">
+            <div class="leg-dot" style="background:var(--vermelho)"></div>
+            <span>Repetida</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy de abertura — depois do mockup -->
+      <span class="pre-headline" style="margin-top:28px;display:inline-block;">Para quem coleciona o álbum da Copa 2026</span>
+
+      <h1 class="headline">
+        Você sabe <span>exatamente</span><br>o que falta<br>no seu álbum?
+      </h1>
+
+      <p class="subheadline">
+        Sem lista de papel. Sem depender de memória.<br>
+        <strong>Seu álbum organizado no celular — em qualquer lugar.</strong>
+      </p>
+
+      <a href="https://copa-sticker-go.base44.app" class="hero-cta">Começar grátis →</a>
+      <p class="hero-sub">Crie sua conta e comece agora — sem cartão</p>
+      <p class="trial-hint">7 dias grátis. Depois, pelo preço de um pacotinho, sua coleção organizada até 31/10/2026.</p>
+
+    </div>
+  </section>
+
+  <!-- ─── DOR ─── -->
+  <section>
+    <div class="wrapper">
+      <p class="section-label">O problema</p>
+      <h2 class="section-title">Papel some. Memória falha. Troca boa vai embora.</h2>
+
+      <ul class="dor-list">
+        <li>
+          <div class="dor-icon"></div>
+          Perdeu troca porque não sabia o que precisava
+        </li>
+        <li>
+          <div class="dor-icon"></div>
+          Comprou figurinha repetida sem querer
+        </li>
+        <li>
+          <div class="dor-icon"></div>
+          Colou errado e descobriu depois
+        </li>
+        <li>
+          <div class="dor-icon"></div>
+          Álbum parado, sem saber por onde continuar
+        </li>
+      </ul>
+
+      <p><strong>Você merece ter controle total sobre o seu álbum.</strong></p>
+    </div>
+  </section>
+
+  <!-- ─── COMO FUNCIONA ─── -->
+  <section>
+    <div class="wrapper">
+      <p class="section-label">Como funciona</p>
+      <h2 class="section-title">3 passos. Isso é tudo.</h2>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-emoji">📲</div>
+          <div class="step-text">
+            <strong>Acessa pelo celular</strong>
+            <span>iOS ou Android — sem baixar na loja</span>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-emoji">✅</div>
+          <div class="step-text">
+            <strong>Marca suas figurinhas</strong>
+            <span>980 figurinhas organizadas por seleção</span>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-emoji">🔄</div>
+          <div class="step-text">
+            <strong>Encontra pessoas para trocar</strong>
+            <span>Conecte amigos e veja quem tem o que você precisa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── O QUE VEM INCLUSO ─── -->
+  <section>
+    <div class="wrapper">
+      <p class="section-label">O que você experimenta</p>
+      <h2 class="section-title">Tudo disponível desde o primeiro dia.</h2>
+
+      <ul class="feat-bullets">
+        <li>
+          <div class="feat-icon"></div>
+          <span><strong>980 figurinhas</strong> organizadas por seleção — 2 toques para marcar</span>
+        </li>
+        <li>
+          <div class="feat-icon"></div>
+          <span><strong>Aba de Trocas</strong> — veja quem tem o que você precisa</span>
+        </li>
+        <li>
+          <div class="feat-icon"></div>
+          <span><strong>Sistema de Amigos</strong> — conecte sua turma e organize trocas direto no app</span>
+        </li>
+        <li>
+          <div class="feat-icon"></div>
+          <span><strong>Sem download</strong> — abre no navegador e salva na tela inicial</span>
+        </li>
+        <li>
+          <div class="feat-icon"></div>
+          <span><strong>Acesso até 31/10/2026</strong> — toda a temporada do álbum</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section>
+    <div class="wrapper">
+      <p class="section-label">Dúvidas</p>
+      <h2 class="section-title">Respostas rápidas.</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Precisa baixar na loja de apps?
+            <div class="faq-arrow">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Não. É um <strong>web app</strong> — abre pelo navegador e você salva na tela inicial do celular como qualquer app.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Funciona no iPhone e no Android?
+            <div class="faq-arrow">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Sim. Qualquer celular com navegador funciona.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Até quando tenho acesso?
+            <div class="faq-arrow">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Até <strong>31 de outubro de 2026</strong> — tempo suficiente para completar o álbum.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FINAL ─── -->
+  <section class="cta-final">
+    <div class="wrapper">
+      <p class="section-label">Última chamada</p>
+      <h2 class="section-title">
+        Chega de perder troca boa por falta de organização.
+      </h2>
+
+      <p>
+        Crie sua conta em 30 segundos.<br>
+        <strong>7 dias grátis — sem cartão, sem compromisso.</strong>
+      </p>
+
+      <a href="https://copa-sticker-go.base44.app" class="cta-final-btn">Começar grátis →</a>
+      <p class="cta-final-sub">📱 iOS e Android · Experimenta agora</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-logo">CROMO</div>
+    <p class="footer-copy">© 2026 Cromo · Todos os direitos reservados</p>
+  </footer>
+
+
+  <script>
+    // ─── Gera mockup de figurinhas aleatório (demo visual) ───
+    (function() {
+      var grid = document.getElementById('mockupGrid');
+      if (!grid) return;
+      var states = ['ok','ok','ok','ok','ok','ok','ok','ok','ok','ok','ok','ok','falta','falta','falta','falta','falta','falta','repetida','repetida','repetida','ok','falta','ok'];
+      states.sort(function() { return Math.random() - 0.5; });
+      states.forEach(function(s) {
+        var d = document.createElement('div');
+        d.className = 'fig ' + s;
+        grid.appendChild(d);
+      });
+    })();
+
+    // ─── FAQ accordion ───
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i) {
+          i.classList.remove('open');
+        });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
