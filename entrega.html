@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu acesso ao Cromo 🏆</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, #F5F0E8 0%, #EDE6D6 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #C9A84C, #B8892A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 24px rgba(201,168,76,0.35);
+      font-size: 38px;
+    }
+
+    .app-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      letter-spacing: 0.06em;
+      color: #B8892A;
+      margin-bottom: 6px;
+    }
+
+    .congrats {
+      font-size: 15px;
+      color: #5C5243;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    /* CARD DO CÓDIGO */
+    .code-card {
+      background: #FFFFFF;
+      border: 2px solid #C9A84C;
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.15);
+    }
+
+    .code-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8A8070;
+      margin-bottom: 14px;
+    }
+
+    .code-box {
+      background: #F5F0E8;
+      border: 1.5px solid #DDD4C0;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #3A2F20;
+      margin-bottom: 14px;
+    }
+
+    .copy-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #C9A84C, #B8892A);
+      color: white;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .copy-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .copy-btn:active { transform: scale(0.98); }
+    .copy-btn.copied { background: #2D6A4F; }
+
+    /* PASSOS */
+    .steps-card {
+      background: #FFFFFF;
+      border: 1px solid #DDD4C0;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .steps-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      color: #3A2F20;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C9A84C, #B8892A);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #5C5243;
+      line-height: 1.5;
+    }
+
+    .step-text strong { color: #3A2F20; }
+
+    /* CTA */
+    .open-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: #3A2F20;
+      color: white;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .open-btn:hover { opacity: 0.85; }
+
+    .fine-print {
+      font-size: 12px;
+      color: #8A8070;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="icon">🏆</div>
+    <div class="app-name">CROMO</div>
+    <p class="congrats">Compra confirmada! Seu acesso está pronto.<br>Siga os passos abaixo para ativar.</p>
+
+    <!-- CÓDIGO -->
+    <div class="code-card">
+      <div class="code-label">Seu código de acesso</div>
+      <div class="code-box" id="codigo">CRM7K26</div>
+      <button class="copy-btn" id="copyBtn" onclick="copiarCodigo()">
+        Copiar código
+      </button>
+    </div>
+
+    <!-- PASSOS -->
+    <div class="steps-card">
+      <div class="steps-title">COMO ATIVAR</div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Clique em <strong>"Abrir o Cromo"</strong> abaixo</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Faça login ou crie sua conta</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Quando aparecer a tela de pagamento, clique em <strong>"Já paguei — inserir código de acesso"</strong></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Cole o código <strong>CRM7K26</strong> e confirme</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">Pronto — acesso liberado até 31/10/2026 🎉</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a href="https://copa-sticker-go.base44.app" class="open-btn">Abrir o Cromo →</a>
+    <p class="fine-print">Acesso vitalício até 31/10/2026</p>
+
+  </div>
+
+  <script>
+    function copiarCodigo() {
+      navigator.clipboard.writeText('CRM7K26').then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✓ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copiar código';
+          btn.classList.remove('copied');
+        }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>
